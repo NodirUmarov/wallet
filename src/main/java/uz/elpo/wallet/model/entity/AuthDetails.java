@@ -37,9 +37,9 @@ public class AuthDetails extends AbstractPersistable<Long> {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_details_id", referencedColumnName = "id", nullable = false)
-    private UserDetails userDetails;
+    private User user;
 
-    @PostPersist
+    @PrePersist
     private void onCreate() {
         isEnabled = true;
         isAccountNonExpired = true;

@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Table(name = "user_details")
 @NoArgsConstructor
-public class UserDetails {
+public class User {
 
     @Column(nullable = false)
     private String firstName;
