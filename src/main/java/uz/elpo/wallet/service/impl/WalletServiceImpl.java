@@ -21,7 +21,6 @@ public class WalletServiceImpl implements WalletService {
     private final WalletRepository walletRepository;
     private final WalletCreateMapper walletCreateMapper;
 
-
     @Modifying
     @Override
     public WalletDto create(WalletCreateRequest request) {
