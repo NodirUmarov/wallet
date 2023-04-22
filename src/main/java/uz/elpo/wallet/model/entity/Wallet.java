@@ -22,10 +22,4 @@ public class Wallet extends AbstractAuditable<AuthDetails, Long> {
     @Column(nullable = false)
     private BigDecimal funds;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "wallet_has_transaction",
-            joinColumns = @JoinColumn(name = "wallet_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "transaction_id", referencedColumnName = "id"))
-    private List<Transaction> transactions;
-
 }
