@@ -12,6 +12,8 @@ import uz.elpo.wallet.model.request.WalletCreateRequest;
 import uz.elpo.wallet.repository.WalletRepository;
 import uz.elpo.wallet.service.WalletService;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -25,6 +27,14 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public WalletDto create(WalletCreateRequest request) {
         log.info("Creating wallet... ");
+
+        if (request.getName() == null) {
+            throw  new RuntimeException("Wallet name is null");
+        }
+
+        if (request.getFunds().signum() < 0) {
+            throw new RuntimeException("The funds cannot be negative");
+        }
         Wallet wallet = walletCreateMapper.toEntity(request);
         walletRepository.save(wallet);
 
