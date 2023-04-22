@@ -31,7 +31,7 @@ public class AuthDetails extends AbstractPersistable<Long> {
     @Column(nullable = false)
     private Boolean isCredentialsNonExpired;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
