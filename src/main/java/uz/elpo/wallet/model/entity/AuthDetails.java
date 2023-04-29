@@ -35,10 +35,6 @@ public class AuthDetails extends AbstractPersistable<Long> {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_details_id", referencedColumnName = "id", nullable = false)
-    private User user;
-
     @PrePersist
     private void onCreate() {
         isEnabled = true;

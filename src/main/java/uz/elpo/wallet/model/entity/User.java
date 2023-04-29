@@ -39,6 +39,10 @@ public class User extends AbstractPersistable<Long> {
     @JoinColumn(name = "user_details_id", referencedColumnName = "id", nullable = false)
     private List<Wallet> wallet;
 
+    @OneToOne
+    @JoinColumn(name = "auth_details_id", referencedColumnName = "id")
+    private AuthDetails authDetails;
+
     @Transient
     private String fullName;
 

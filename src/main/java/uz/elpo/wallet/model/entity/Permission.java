@@ -15,8 +15,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @NoArgsConstructor
 public class Permission extends AbstractPersistable<Long> {
 
-    // TODO: 4/15/2023 implement GrantedAuthority
-
     @Column(unique = true, nullable = false)
     private String authority;
 
