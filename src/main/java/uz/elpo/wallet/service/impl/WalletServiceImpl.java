@@ -1,5 +1,6 @@
 package uz.elpo.wallet.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,7 +13,6 @@ import uz.elpo.wallet.model.request.WalletCreateRequest;
 import uz.elpo.wallet.repository.WalletRepository;
 import uz.elpo.wallet.service.WalletService;
 
-import java.math.BigDecimal;
 
 @Slf4j
 @Service
@@ -36,8 +36,28 @@ public class WalletServiceImpl implements WalletService {
             throw new RuntimeException("The funds cannot be negative");
         }
         Wallet wallet = walletCreateMapper.toEntity(request);
+        wallet.setIsActive(true);
         walletRepository.save(wallet);
+        return walletMapper.toDto(wallet);
+    }
 
+    @Override
+    public WalletDto getOne(Long id) {
+        log.info("Getting wallet... ");
+        Wallet wallet = walletRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        if (!wallet.getIsActive()) {
+            throw new EntityNotFoundException("Wallet is not active");
+        }
+        return walletMapper.toDto(wallet);
+    }
+
+    @Modifying
+    @Override
+    public WalletDto delete(Long id) {
+        log.info("Deleting wallet... ");
+        Wallet wallet = walletRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        wallet.setIsActive(false);
+        walletRepository.save(wallet);
         return walletMapper.toDto(wallet);
     }
 }
