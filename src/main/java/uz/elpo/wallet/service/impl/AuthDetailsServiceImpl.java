@@ -35,7 +35,7 @@ public class AuthDetailsServiceImpl implements AuthDetailsService {
                         .stream()
                         .map((permission -> new SimpleGrantedAuthority(permission.getAuthority())))
                         .toList())
-                .accountExpired(authDetails.getIsAccountNonExpired())
+                .accountExpired(!authDetails.getIsAccountNonExpired())
                 .accountLocked(!authDetails.getIsAccountNonLocked())
                 .disabled(!authDetails.getIsEnabled())
                 .build();

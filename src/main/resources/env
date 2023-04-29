@@ -1,4 +1,0 @@
-DB_DRIVER=org.postgresql.Driver
-DB_USER=postgres
-DB_PASSWORD=123
-DB_URL=jdbc:postgresql://localhost:5432/postgres

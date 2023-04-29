@@ -20,5 +20,4 @@ public interface WalletMapper extends DtoMapper<WalletDto, Wallet>, EntityMapper
     default AuthDetails toAuthDetails(Optional<AuthDetails> optionalAuthDetails) {
         return optionalAuthDetails.orElseThrow(NullPointerException::new);
     }
-
 }

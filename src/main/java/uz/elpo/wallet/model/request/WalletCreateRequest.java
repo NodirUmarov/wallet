@@ -11,6 +11,7 @@ public class WalletCreateRequest {
 
     @NotBlank
     private String name;
+
     @PositiveOrZero
     private BigDecimal funds;
 }

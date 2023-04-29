@@ -35,7 +35,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     @Autowired
     public AuthenticationFilter(@Lazy AuthenticationManager authenticationManager) {
         super(authenticationManager);
-        this.setFilterProcessesUrl("api/login");
+        this.setFilterProcessesUrl("/api/login");
     }
 
     @Value("${jwt.secret}")

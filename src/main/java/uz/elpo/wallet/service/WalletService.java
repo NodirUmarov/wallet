@@ -5,7 +5,7 @@ import uz.elpo.wallet.model.request.WalletCreateRequest;
 
 public interface WalletService {
 
-    WalletDto create(WalletCreateRequest request);
+    WalletDto create(WalletCreateRequest request, String username);
 
     WalletDto getOne(Long id);
 

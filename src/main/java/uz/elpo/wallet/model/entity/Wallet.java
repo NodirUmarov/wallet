@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @Table(name = "wallets")
 @NoArgsConstructor
-public class Wallet extends AbstractAuditable<AuthDetails, Long> {
+public class Wallet extends CustomAuditable<AuthDetails, Long> {
 
     @Column(nullable = false)
     private String name;

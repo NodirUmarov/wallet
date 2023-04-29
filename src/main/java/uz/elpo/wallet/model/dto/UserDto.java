@@ -16,6 +16,5 @@ public record UserDto(Long id,
                       LocalDate dob,
                       String fullName,
                       String gender,
-                      AuthDetailsDto authDetails,
-                      List<WalletDto> wallet) implements Serializable {
+                      AuthDetailsDto authDetails) implements Serializable {
 }

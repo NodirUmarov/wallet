@@ -20,6 +20,8 @@ public interface WalletCreateMapper extends EntityMapper<Wallet, WalletCreateReq
     @Mapping(target = "createdBy", ignore = true)
     @Mapping(target = "lastModifiedBy", ignore = true)
     @Mapping(target = "lastModifiedDate", ignore = true)
+    @Mapping(target = "isActive", ignore = true)
+    @Mapping(target = "transactions", ignore = true)
     Wallet toEntity(WalletCreateRequest request);
 
 }
