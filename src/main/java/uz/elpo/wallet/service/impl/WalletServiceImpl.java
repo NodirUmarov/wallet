@@ -4,8 +4,6 @@ import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import uz.elpo.wallet.mapper.dto.WalletMapper;
 import uz.elpo.wallet.mapper.request.WalletCreateMapper;
@@ -17,13 +15,11 @@ import uz.elpo.wallet.repository.AuthDetailsRepository;
 import uz.elpo.wallet.repository.WalletRepository;
 import uz.elpo.wallet.service.WalletService;
 
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class WalletServiceImpl implements WalletService {
 
-    private final AuthDetailsRepository authDetailsRepository;
     private final WalletMapper walletMapper;
     private final WalletRepository walletRepository;
     private final WalletCreateMapper walletCreateMapper;
@@ -40,15 +36,8 @@ public class WalletServiceImpl implements WalletService {
             throw new RuntimeException("The funds cannot be negative");
         }
 
-        AuthDetails authDetails = authDetailsRepository.findByUsername(username)
-                .orElseThrow(() -> new EntityNotFoundException("For username='" + username + "'"));
-
         Wallet wallet = walletCreateMapper.toEntity(request);
         wallet.setIsActive(true);
-        wallet.setCreatedBy(authDetails);
-        wallet.setLastModifiedBy(authDetails);
-        wallet.setCreatedDate(LocalDateTime.now());
-        wallet.setLastModifiedDate(LocalDateTime.now());
         walletRepository.save(wallet);
         return walletMapper.toDto(wallet);
     }

@@ -23,22 +23,6 @@ public class AuthDetailsServiceImpl implements AuthDetailsService {
         AuthDetails authDetails = authDetailsRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("For username='" + username + "'"));
 
-        return mapToUserDetails(authDetails);
+        return authDetails;
     }
-
-    private UserDetails mapToUserDetails(AuthDetails authDetails) {
-        return User.builder()
-                .username(authDetails.getUsername())
-                .password(authDetails.getPassword())
-                .credentialsExpired(!authDetails.getIsCredentialsNonExpired())
-                .authorities(authDetails.getRole().getPermissions()
-                        .stream()
-                        .map((permission -> new SimpleGrantedAuthority(permission.getAuthority())))
-                        .toList())
-                .accountExpired(!authDetails.getIsAccountNonExpired())
-                .accountLocked(!authDetails.getIsAccountNonLocked())
-                .disabled(!authDetails.getIsEnabled())
-                .build();
-    }
-
 }

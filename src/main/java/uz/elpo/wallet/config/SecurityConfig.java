@@ -1,4 +1,4 @@
-package uz.elpo.wallet.security;
+package uz.elpo.wallet.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import uz.elpo.wallet.security.filter.AuthenticationFilter;
-import uz.elpo.wallet.security.filter.AuthorizationFilter;
+import uz.elpo.wallet.config.filter.AuthenticationFilter;
+import uz.elpo.wallet.config.filter.AuthorizationFilter;
 
 @Configuration
 @EnableWebSecurity

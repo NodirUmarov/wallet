@@ -1,4 +1,4 @@
-package uz.elpo.wallet.security.filter;
+package uz.elpo.wallet.config.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

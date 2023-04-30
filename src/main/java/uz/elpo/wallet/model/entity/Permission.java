@@ -7,13 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "permissions")
 @NoArgsConstructor
-public class Permission extends AbstractPersistable<Long> {
+public class Permission extends AbstractPersistable<Long> implements GrantedAuthority {
 
     @Column(unique = true, nullable = false)
     private String authority;

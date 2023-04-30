@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @Table(name = "wallets")
 @NoArgsConstructor
-public class Wallet extends CustomAuditable<AuthDetails, Long> {
+public class Wallet extends CustomAuditable<Long> {
 
     @Column(nullable = false)
     private String name;
@@ -30,5 +30,4 @@ public class Wallet extends CustomAuditable<AuthDetails, Long> {
             joinColumns = @JoinColumn(name = "wallet_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "transaction_id", referencedColumnName = "id"))
     private List<Transaction> transactions;
-
 }
